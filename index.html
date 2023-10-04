@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/ac99d6b72f.js" crossorigin="anonymous"></script>
+</head> 
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+    
+                <ul>
+                    <li><a href="#header">HOME</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                    
+                </ul>
+            </nav>
+            <div class="header-text">
+                <h1>ASWIN SANKAR.</h1>
+                <p>Aspiring Web Developer</p>
+            </div>
+
+    </div>
+</div>
+<!------------About---------------->
+<div id="about">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="images/user.jpg">
+            </div>
+            <div class="about-col-2">
+                <h1 class="sub-title">About Me</h1>
+                <p>Welcome to my portfolio website! I'm Aswin Sankar,
+                currently pursuing my B.Tech degree at Model Engineering College.
+                I'm a passionate web developer with a strong knack for problem-solving. 
+                My journey into the world of programming has equipped me with a diverse skill set,
+                including proficiency in Python, C, HTML, and Django. Through this platform,
+                I aim to showcase my projects, skills, and experiences, providing you with a glimpse
+                of my journey as a developer and problem solver. Whether you're here to explore my work
+                or connect for potential collaborations, I'm excited to share my passion for technology 
+                and innovation with you. Thank you for visiting, and please feel free to explore the contents of my portfolio!</p>
+            
+                <div class="tab-titles">
+                    <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                    <p class="tab-links" onclick="opentab('education')">Education</p>
+                </div>
+                <div class="tab-contents" id="skills">
+                    <ul>
+                        <li><span>Web Developer</span><br>Web design</li>
+                        <li><span>Problem Solving enthusiast</span><br></li>
+                        <li><span>Languages Known</span><br>Python,C,Javascript</li>
+
+                    </ul>
+                </div>
+                <div class="tab-contents" id="education" style="display:none;">
+                    <ul>
+                        <li><span>12th </span><br>Bharatiya Vidya Bhavans, Perumthiruthi</li>
+                        <li><span>Btech in CSBS</span><br>Govt. Model Engineering college, Thrikkakara</li>    
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!---------------Contact--------->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-regular fa-paper-plane"></i>aswinsankar9@gmail.com</p><br>
+                <p><i class="fa-solid fa-phone"></i>8714455925</p><br>
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/aswin-sankar-b87288255/"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/a5_win_sr/"><i class="fa-brands fa-square-instagram"></i></a>
+                    <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+        
+            </div>
+            <div class="contact-right">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" id="email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+    
+        </div>
+
+    </div>
+</div>
+<script>
+    var tablinks = document.getElementsByClassName("tab-links")
+    var tabcontents = document.getElementsByClassName("tab-contents")
+
+    function opentab(tabname) {
+    for (let tablink of tablinks) {
+        tablink.classList.remove("active-link");
+    }
+    for (let tabcontent of tabcontents) {
+        tabcontent.style.display = "none";
+        tabcontent.classList.remove("active-tab");
+    }
+    document.getElementById(tabname).style.display = "block";
+    document.getElementById(tabname).classList.add("active-tab");
+    event.currentTarget.classList.add("active-link");
+}
+
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxIi1gT0uzQ-pOovc48GbAtAdT2B0HVqGaJZqRke072qt5UJJbFzappD3xrdKNtVhvz4w/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg=document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message Sent!"
+            setTimeout(function(){
+                                msg.innerHTML=""
+
+                            },5000)
+                            form.reset
+        .catch(error => console.error('Error!', error.message))
+    })
+})
+  </script>
+
+</body>
+</html>
